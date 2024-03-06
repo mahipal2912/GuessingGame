@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.navigation.findNavController
 import com.mahi.guessinggame.databinding.FragmentResultBinding
 
@@ -33,8 +32,8 @@ class ResultFragment : Fragment() {
         viewModelFactory = ResultViewModelFactory(result)
         viewModel = ViewModelProvider(this, viewModelFactory)
                                      .get(ResultViewModel::class.java)
-
-        binding.tvWonLost.text = viewModel.result
+        // set the layout's data binding variable
+        binding.resultViewModel = viewModel
 
         binding.btNewGame.setOnClickListener {
             view.findNavController().navigate(R.id.action_resultFragment_to_gameFragment)

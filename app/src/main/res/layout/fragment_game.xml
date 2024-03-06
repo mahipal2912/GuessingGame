@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".GameFragment">
+    <data>
+        <variable
+                name="gameViewModel"
+                type="com.mahi.guessinggame.GameViewModel" />
+    </data>
+<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp"
-        tools:context=".GameFragment">
+        android:padding="16dp">
 
 
     <TextView
@@ -15,20 +22,24 @@
             android:layout_gravity="center"
             android:letterSpacing="0.1"
             android:layout_marginTop="10dp"
-            android:textSize="34sp" />
+            android:textSize="34sp"
+            android:text="@{gameViewModel.secretWordDisplay}"/>
 
     <TextView
             android:id="@+id/tvLives"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:text="@{@string/lives_left(gameViewModel.livesLeft)}"/>
     <TextView
             android:id="@+id/tvIncorrect_gusses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:text="@{@string/incorrect_guesses(gameViewModel.incorrectGusses)}"/>
+
     <EditText
             android:id="@+id/tvGuess"
             android:layout_width="wrap_content"
@@ -45,4 +56,14 @@
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:text="@string/guess" />
+    <Button
+            android:id="@+id/btFinshGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:text = "@string/finish_game"
+            android:onClick="@{() -> gameViewModel.finishGame()}"/>
+
 </LinearLayout>
+</layout>
